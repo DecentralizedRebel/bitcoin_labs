@@ -8,6 +8,7 @@ from tkinter.messagebox import showerror
 from datetime import datetime
 import signal
 import sys
+import mplcyberpunk
 
 # Initial investment in BTC
 initial_investment_btc = 0.08
@@ -93,7 +94,7 @@ class BTCProjectionApp:
         bear_case = [self.current_price * ((1 + arr_bear) ** i) for i in range(22)]
         bull_case = [self.current_price * ((1 + arr_bull) ** i) for i in range(22)]
 
-        sns.set(style="whitegrid")
+        plt.style.use("cyberpunk")
 
         plt.figure(figsize=(12, 6))
         plt.plot(years, base_case, label='Base Case (29%/year)', color='#F7931A', linewidth=2)
@@ -129,6 +130,7 @@ class BTCProjectionApp:
 
         plt.legend()
         plt.grid(True, linestyle='--', alpha=0.7)
+        mplcyberpunk.add_glow_effects()
         plt.show()
 
 def convert2satoshi(btc):
